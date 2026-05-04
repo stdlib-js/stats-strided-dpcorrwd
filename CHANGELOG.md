@@ -4,7 +4,7 @@
 
 <section class="release" id="unreleased">
 
-## Unreleased (2026-04-23)
+## Unreleased (2026-05-04)
 
 <section class="features">
 
@@ -22,6 +22,7 @@
 
 <details>
 
+-   [`81fcd32`](https://github.com/stdlib-js/stdlib/commit/81fcd3214635a29ba3749b2aaf54c41197039b50) - **bench:** fix benchmark input in `stats/strided/dpcorrwd` [(#11918)](https://github.com/stdlib-js/stdlib/pull/11918) _(by Nakul Krishnakumar)_
 -   [`e616ec3`](https://github.com/stdlib-js/stdlib/commit/e616ec3c2b724c7b94937c8b892f54d5ef437719) - **docs:** capitalize `Pearson` and close backtick in `stats/strided/dpcorrwd` [(#11515)](https://github.com/stdlib-js/stdlib/pull/11515) _(by Philipp Burckhardt)_
 -   [`f475446`](https://github.com/stdlib-js/stdlib/commit/f4754460a799406f0345c5500bcca2c3a069ea62) - **feat:** add `stats/strided/dpcorrwd` [(#10677)](https://github.com/stdlib-js/stdlib/pull/10677) _(by Nakul Krishnakumar, Athan Reines, stdlib-bot)_
 
