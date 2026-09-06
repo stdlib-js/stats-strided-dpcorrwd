@@ -65,32 +65,38 @@ where `x_i` and `y_i` are the _ith_ components of vectors **X** and **Y**, respe
 
 <!-- /.intro -->
 
-<section class="installation">
 
-## Installation
-
-```bash
-npm install @stdlib/stats-strided-dpcorrwd
-```
-
-Alternatively,
-
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
--   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
-
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
-
-</section>
 
 <section class="usage">
 
 ## Usage
 
+To use in Observable,
+
 ```javascript
-var dpcorrwd = require( '@stdlib/stats-strided-dpcorrwd' );
+dpcorrwd = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-strided-dpcorrwd@umd/browser.js' )
+```
+
+To vendor stdlib functionality and avoid installing dependency trees for Node.js, you can use the UMD server build:
+
+```javascript
+var dpcorrwd = require( 'path/to/vendor/umd/stats-strided-dpcorrwd/index.js' )
+```
+
+To include the bundle in a webpage,
+
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/stats-strided-dpcorrwd@umd/browser.js"></script>
+```
+
+If no recognized module system is present, access bundle contents via the global scope:
+
+```html
+<script type="text/javascript">
+(function () {
+    window.dpcorrwd;
+})();
+</script>
 ```
 
 #### dpcorrwd( N, x, strideX, y, strideY )
@@ -196,9 +202,14 @@ var c = dpcorrwd.ndarray( 4, x, 2, 1, y, 2, 1 );
 
 <!-- eslint no-undef: "error" -->
 
-```javascript
-var discreteUniform = require( '@stdlib/random-array-discrete-uniform' );
-var dpcorrwd = require( '@stdlib/stats-strided-dpcorrwd' );
+```html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/random-array-discrete-uniform@umd/browser.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/stdlib-js/stats-strided-dpcorrwd@umd/browser.js"></script>
+<script type="text/javascript">
+(function () {
 
 var opts = {
     'dtype': 'float64'
@@ -211,6 +222,11 @@ console.log( y );
 
 var c = dpcorrwd( x.length, x, 1, y, 1 );
 console.log( c );
+
+})();
+</script>
+</body>
+</html>
 ```
 
 </section>
@@ -219,135 +235,7 @@ console.log( c );
 
 <!-- C interface documentation. -->
 
-* * *
 
-<section class="c">
-
-## C APIs
-
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-
-<section class="intro">
-
-</section>
-
-<!-- /.intro -->
-
-<!-- C usage documentation. -->
-
-<section class="usage">
-
-### Usage
-
-```c
-#include "stdlib/stats/strided/dpcorrwd.h"
-```
-
-#### stdlib_strided_dpcorrwd( N, \*X, strideX, \*Y, strideY )
-
-Computes the [sample Pearson product-moment correlation coefficient][pearson-correlation] of two double-precision floating-point strided arrays using Welford's algorithm.
-
-```c
-const double x[] = { 1.0, -2.0, 2.0 };
-const double y[] = { 2.0, -2.0, 1.0 };
-
-double c = stdlib_strided_dpcorrwd( 3, x, 1, y, 1 );
-// returns ~0.885
-```
-
-The function accepts the following arguments:
-
--   **N**: `[in] CBLAS_INT` number of indexed elements.
--   **X**: `[in] double*` first input array.
--   **strideX**: `[in] CBLAS_INT` stride length for `X`.
--   **Y**: `[in] double*` second input array.
--   **strideY**: `[in] CBLAS_INT` stride length for `Y`.
-
-```c
-double stdlib_strided_dpcorrwd( const CBLAS_INT N, const double *X, const CBLAS_INT strideX, const double *Y, const CBLAS_INT strideY );
-```
-
-#### stdlib_strided_dpcorrwd_ndarray( N, \*X, strideX, offsetX, \*Y, strideY, offsetY )
-
-Computes the [sample Pearson product-moment correlation coefficient][pearson-correlation] of two double-precision floating-point strided arrays using Welford's algorithm and alternative indexing semantics.
-
-```c
-const double x[] = { 1.0, -2.0, 2.0 };
-const double y[] = { 2.0, -2.0, 1.0 };
-
-double c = stdlib_strided_dpcorrwd_ndarray( 3, x, 1, 0, y, 1, 0 );
-// returns ~0.885
-```
-
-The function accepts the following arguments:
-
--   **N**: `[in] CBLAS_INT` number of indexed elements.
--   **X**: `[in] double*` first input array.
--   **strideX**: `[in] CBLAS_INT` stride length for `X`.
--   **offsetX**: `[in] CBLAS_INT` starting index for `X`.
--   **Y**: `[in] double*` second input array.
--   **strideY**: `[in] CBLAS_INT` stride length for `Y`.
--   **offsetY**: `[in] CBLAS_INT` starting index for `Y`.
-
-```c
-double stdlib_strided_dpcorrwd_ndarray( const CBLAS_INT N, const double *X, const CBLAS_INT strideX, const CBLAS_INT offsetX, const double *Y, const CBLAS_INT strideY, const CBLAS_INT offsetY );
-```
-
-</section>
-
-<!-- /.usage -->
-
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-<section class="notes">
-
-</section>
-
-<!-- /.notes -->
-
-<!-- C API usage examples. -->
-
-<section class="examples">
-
-### Examples
-
-```c
-#include "stdlib/stats/strided/dpcorrwd.h"
-#include <stdio.h>
-
-int main( void ) {
-    // Create strided arrays:
-    const double x[] = { 1.0, -2.0, 3.0, -4.0, 5.0, -6.0, 7.0, -8.0 };
-    const double y[] = { 1.0, -2.0, 3.0, -4.0, 5.0, -6.0, 7.0, -8.0 };
-
-    // Specify the number of elements:
-    const int N = 8;
-
-    // Specify strides:
-    const int strideX = 1;
-    const int strideY = -1;
-
-    // Compute the Pearson product-moment correlation coefficient between `x` and `y`:
-    double d = stdlib_strided_dpcorrwd( N, x, strideX, y, strideY );
-
-    // Print the result:
-    printf( "Pearson Correlation Coefficient: %lf\n", d );
-
-    // Compute the Pearson product-moment correlation coefficient between `x` and `y` with offsets:
-    d = stdlib_strided_dpcorrwd_ndarray( N, x, strideX, 0, y, strideY, N-1 );
-
-    // Print the result:
-    printf( "Pearson Correlation Coefficient: %lf\n", d );
-}
-```
-
-</section>
-
-<!-- /.examples -->
-
-</section>
-
-<!-- /.c -->
 
 <section class="references">
 
@@ -439,7 +327,7 @@ Copyright &copy; 2016-2026. The Stdlib [Authors][stdlib-authors].
 
 [covariance]: https://en.wikipedia.org/wiki/Covariance
 
-[@stdlib/array/float64]: https://github.com/stdlib-js/array-float64
+[@stdlib/array/float64]: https://github.com/stdlib-js/array-float64/tree/umd
 
 [mdn-typed-array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 
